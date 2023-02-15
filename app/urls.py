@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mensagens.views import viewErro
+from erros import views
 from django.contrib.auth.views import LoginView, LogoutView
 
-handler404 = viewErro.handler404
+handler404 = views.handler404;
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
@@ -31,8 +31,7 @@ urlpatterns = [
     # ),
     # path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
-    path('', include('mensagens.urls.urlsHome', namespace='home')),
-    path('mensagensAleatorias', include('mensagens.urls.urlsMensagensAleatorias', namespace='mensagensAleatorias')),
-    path('mensagensEquipe', include('mensagens.urls.urlsMensagensEquipe', namespace='mensagensEquipe')),
-    path('mensagens/', include('mensagens.urls.urls', namespace='mensagens')),
+    path('', include('home.urls')),
+    path('mensagensAleatorias/', include('mensagensAleatorias.urls')),
+    path('mensagens/', include('mensagens.urls')),
 ]
