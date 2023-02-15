@@ -11,6 +11,12 @@
            <li class="nav-item">
                 <a class="nav-link" href="{% url 'mensagens:home' %}">Cadastro de Mensagem</a>
             </li>
+            <li class="nav-item">
+                 <a class="nav-link" href="{% url 'mensagensAleatorias:home' %}">Mensagens Aleatórias</a>
+            </li>
+            <li class="nav-item">
+                 <a class="nav-link" href="{% url 'mensagensEquipe:home' %}">Mensagens da Equipe</a>
+            </li>
         </ul>
         {% if user.is_authenticated %}
           <ul class="navbar-nav navbar-right">

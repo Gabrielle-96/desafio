@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Mensagens da Equipe</h1>
+  </div>
+</div>
+
+{% for mensagem in mensagens %}
+  <div class="card">
+    <div class="card-body">
+      <p>{{mensagem.descricao}}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% if mensagens|length == 0 %}
+  <p>Solicitar ao líder da equipe o cadastro de uma mensagem</p>
+{% endif %}
+
+{% endblock content %}
