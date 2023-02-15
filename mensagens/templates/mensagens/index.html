@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+        {% for mensagem in mensagens %}
+            <li> 
+                {{mensagem.descricao}} 
+                <a href="{% url 'mensagens:editar' mensagem.id %}">Editar</a>
+                <a href="{% url 'mensagens:excluir' mensagem.id %}">Excluir</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'mensagens:salvar' %}" method="post">
+        {% csrf_token  %}
+        <input type="text" name="descricao" />
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock content %}
