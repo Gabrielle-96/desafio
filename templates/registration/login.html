@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card  auth-card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Entrar</h4>
+        
+                <form action="/admin/login/?next=/" method="post" id="login-form">                    
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+
+                    <div class="form-row">                      
+                      <label for="id_username" class="required">Usuário:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                    </div>
+                    <div class="form-row">                      
+                      <label for="id_password" class="required">Senha:</label> <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                    </div>                    
+                    
+                    <div class="submit-row">
+                      <input type="submit" value="Acessar">
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

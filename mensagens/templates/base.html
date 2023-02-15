@@ -18,9 +18,9 @@
   </body>
 </head>
 <body>
-
-  {% include "includes/nav.html" %}
-
+  {% if user.is_authenticated %}
+    {% include "includes/nav.html" %}
+  {% endif %}
   <div class="container p-5">
     {% block content %}{% endblock content %}
   </div>

@@ -16,10 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mensagens.views import viewErro
+from django.contrib.auth.views import LoginView, LogoutView
 
 handler404 = viewErro.handler404
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
+    # path(
+    #     'accounts/login/',
+    #     LoginView.as_view(
+    #         template_name='core/auth.html'
+    #     ),
+    #     name='authenticate'
+    # ),
+    # path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
     path('', include('mensagens.urls.urlsHome', namespace='home')),
     path('mensagensAleatorias', include('mensagens.urls.urlsMensagensAleatorias', namespace='mensagensAleatorias')),

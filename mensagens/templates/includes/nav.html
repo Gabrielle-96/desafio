@@ -18,12 +18,10 @@
                  <a class="nav-link" href="{% url 'mensagensEquipe:home' %}">Mensagens da Equipe</a>
             </li>
         </ul>
-        {% if user.is_authenticated %}
           <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link" href="">Logout</a>
             </li>
           </ul>
-        {% endif %}
     </div>
 </nav>
