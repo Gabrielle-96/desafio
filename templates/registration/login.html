@@ -12,14 +12,16 @@
                     <input type="hidden" name="next" value="{{ next }}">
 
                     <div class="form-row">                      
-                      <label for="id_username" class="required">Usuário:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                      <label for="id_username" class="required form-label">Usuário:</label> 
+                      <input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
                     </div>
                     <div class="form-row">                      
-                      <label for="id_password" class="required">Senha:</label> <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                      <label for="id_password" class="required form-label">Senha:</label> 
+                      <input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password">
                     </div>                    
                     
-                    <div class="submit-row">
-                      <input type="submit" value="Acessar">
+                    <div class="submit-row mt-2 text-center">
+                      <button type="submit" class="btn btn-primary">Acessar</button>
                     </div>
                 </form>
 
