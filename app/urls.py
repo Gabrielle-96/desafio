@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from mensagens.views import viewErro
+
+handler404 = viewErro.handler404
 
 urlpatterns = [
     path('admin/', admin.site.urls),

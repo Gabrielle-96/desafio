@@ -1,18 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
+    <h2>Mensagens</h2>  
+    <div class="d-flex">
         {% for mensagem in mensagens %}
-            <li> 
-                {{mensagem.descricao}} 
-                <a href="{% url 'mensagens:editar' mensagem.id %}">Editar</a>
-                <a href="{% url 'mensagens:excluir' mensagem.id %}">Excluir</a>
-            </li>
+            <div class="card m-2">
+                <div class="card-body pb-2">
+                    <p class="card-text">{{mensagem.descricao}}</p>
+                    <a class="btn btn-primary" href="{% url 'mensagens:editar' mensagem.id %}">Editar</a>
+                    <a class="btn btn-danger" href="{% url 'mensagens:excluir' mensagem.id %}">Excluir</a>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-    <form action="{% url 'mensagens:salvar' %}" method="post">
+    </div>
+    <hr>
+    <h2>Cadastro</h2>
+    <form action="{% url 'mensagens:salvar' %}" method="post" class="m-2">
         {% csrf_token  %}
-        <input type="text" name="descricao" />
-        <button type="submit">Salvar</button>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição:</label>
+            <textarea type="text" name="descricao" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 {% endblock content %}

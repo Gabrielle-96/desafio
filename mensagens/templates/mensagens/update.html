@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <form action="{% url 'mensagens:atualizar' mensagem.id %}" method="post">
+    <h2>Edição</h2>
+    <form action="{% url 'mensagens:atualizar' mensagem.id %}" method="post" class="m-2">
         {% csrf_token  %}
-        <input type="text" name="descricao" value="{{mensagem.descricao}}" />
-        <button type="submit">Salvar</button>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição:</label>
+            <textarea type="text" name="descricao" class="form-control">{{mensagem.descricao}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 
 {% endblock content %}

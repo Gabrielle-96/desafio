@@ -2,16 +2,13 @@
 
 {% block content %}
 
-
-<div class="jumbotron">
-  <div class="container">
-    <h1>Mensagens da Equipe</h1>
-  </div>
+<div class="mb-4">
+    <h2>Mensagens da Equipe</h2>
 </div>
 
 {% for mensagem in mensagens %}
-  <div class="card">
-    <div class="card-body">
+  <div class="card mb-2">
+    <div class="card-body pb-2">
       <p>{{mensagem.descricao}}</p>
     </div>
   </div>
