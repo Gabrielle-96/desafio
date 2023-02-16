@@ -6,10 +6,19 @@
     <h2>Mensagens Aleatórias</h2>
 </div>
 
-<div class="card">
-  <div class="card-body">
-    <p>{{mensagem.slip.advice}}</p>
+{% if permitidoExibir == True %}
+  <div class="card">
+    <div class="card-body">
+      <p>{{mensagem.slip.advice}}</p>
+    </div>
   </div>
-</div>
+
+{% else %}
+  <div>
+    <p> Tempo até a próxima mensagem  
+      <!-- exibir quanto tempo falta atraves da logica --> </p>
+  </div>
+
+{% endif %}
 
 {% endblock content %}

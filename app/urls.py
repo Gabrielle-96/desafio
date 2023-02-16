@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from erros import views
-from django.contrib.auth.views import LoginView, LogoutView
 
 handler404 = views.handler404;
 
