@@ -3,19 +3,19 @@ from mensagens.models import Mensagens
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def index(request):
+def listar(request):
     mensagens = Mensagens.objects.all()
     return render(request, "index.html", {"mensagens": mensagens })
 
 @login_required
 def salvar(request):
     descricao = request.POST.get("descricao")
-    Mensagens.objects.create(descricao=descricao)
+    Mensagens.objects.create(descricao=descricao, usuario = request.user)
     mensagens = Mensagens.objects.all()
     return render(request, "index.html", {"mensagens": mensagens })
 
 @login_required
-def editar(request, id):
+def obterTelaEdicao(request, id):
     mensagem = Mensagens.objects.get(id=id)
     return render(request, "update.html", {"mensagem": mensagem})
 
@@ -25,15 +25,15 @@ def atualizar(request, id):
     mensagem = Mensagens.objects.get(id=id)
     mensagem.descricao = descricao
     mensagem.save()
-    return redirect(index)
+    return redirect(listar)
 
 @login_required
 def excluir(request, id):
     mensagem = Mensagens.objects.get(id=id)
     mensagem.delete()
-    return redirect(index)
+    return redirect(listar)
 
 @login_required
-def equipe(request):
+def listarMensagensEquipe(request):
     mensagens = Mensagens.objects.all()
     return render(request, "equipe.html", {"mensagens": mensagens })

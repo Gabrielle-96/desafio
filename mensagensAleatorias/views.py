@@ -8,6 +8,7 @@ from mensagensAleatorias.models import UsuarioMensagemAleatoria
 @login_required
 def list(request):
     permitidoExibir = True
+    tempoRestante = ""
 
     response = requests.get("https://api.adviceslip.com/advice")
     mensagem = response.json()
@@ -19,19 +20,23 @@ def list(request):
         usuarioMsgAleatoria = UsuarioMensagemAleatoria()
         usuarioMsgAleatoria.usuario = request.user
         usuarioMsgAleatoria.qtdAcessosDia = 0
-        usuarioMsgAleatoria.dataUltimoAcesso = datetime.datetime.now()
+        usuarioMsgAleatoria.dataPrimeiroAcesso = datetime.datetime.now()
 
     # caso tenha mais de 24 horas que acessou, zera a data e a quantidade. 
-    timeDiff = datetime.datetime.now().replace(tzinfo=None) - usuarioMsgAleatoria.dataUltimoAcesso.replace(tzinfo=None)
+    dataLiberacaoAcesso = usuarioMsgAleatoria.dataPrimeiroAcesso + datetime.timedelta(days=1)
+    dataLiberacaoAcesso = dataLiberacaoAcesso.replace(tzinfo=None)
+    dataAtual = datetime.datetime.now().replace(tzinfo=None)
 
     #caso tenha passado 24horas do primeiro acesso, as mensagens serão liberadas.
-    if (timeDiff.total_seconds() / 3600 >= 24):
-        usuarioMsgAleatoria.dataUltimoAcesso = datetime.datetime.now()            
+    if (dataAtual > dataLiberacaoAcesso):
+        usuarioMsgAleatoria.dataPrimeiroAcesso = datetime.datetime.now()            
         usuarioMsgAleatoria.qtdAcessosDia = 0
 
     # objeto criado, realizo a validação da quantidade de acessos por dia.
     if (usuarioMsgAleatoria.qtdAcessosDia == 4):
         permitidoExibir = False
+        tempoRestanteTimeDelta = dataLiberacaoAcesso - dataAtual
+        tempoRestante = str(tempoRestanteTimeDelta).split(".")[0]
     else:
         # usuario ainda com acesso disponiveis, controle de acessos
       usuarioMsgAleatoria.qtdAcessosDia = usuarioMsgAleatoria.qtdAcessosDia + 1
@@ -40,5 +45,9 @@ def list(request):
     # salva no banco de dados
     usuarioMsgAleatoria.save()
       
-    return render(request, "list.html", {"mensagem": mensagem, "permitidoExibir": permitidoExibir, "dataUltimoAcesso": usuarioMsgAleatoria.dataUltimoAcesso })
+    return render(request, "list.html", {
+        "mensagem": mensagem, 
+        "permitidoExibir": permitidoExibir, 
+        "tempoRestante": tempoRestante
+    })
 

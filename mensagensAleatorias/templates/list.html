@@ -1,24 +1,25 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
 {% block content %}
 
 <div class="mb-4">
-    <h2>Mensagens Aleatórias</h2>
+  <h2 class="text-center">Mensagens Aleatórias</h2>
 </div>
 
 {% if permitidoExibir == True %}
-  <div class="card">
-    <div class="card-body">
-      <p>{{mensagem.slip.advice}}</p>
-    </div>
+<div class="card">
+  <div class="card-body">
+    <p>{{mensagem.slip.advice}}</p>
   </div>
+</div>
 
 {% else %}
-  <div>
-    <p> Tempo até a próxima mensagem  
-      <!-- exibir quanto tempo falta atraves da logica --> </p>
-  </div>
+<div>
+  <p class="text-center fw-bold fst-italic " style="color: rgb(0, 4, 255)">
+    Tempo até a próxima mensagem é de {{tempoRestante}} aproximadamente.
+  </p>
+</div>
 
-{% endif %}
+{% endif %} 
 
 {% endblock content %}

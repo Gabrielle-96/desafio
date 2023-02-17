@@ -9,7 +9,7 @@ class UsuarioMensagemAleatoria(models.Model):
         on_delete=models.CASCADE,
     )
     qtdAcessosDia = models.IntegerField()
-    dataUltimoAcesso = models.DateTimeField()
+    dataPrimeiroAcesso = models.DateTimeField()
     
     def __str__(self):
         return self.usuario
